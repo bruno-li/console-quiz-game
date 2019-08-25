@@ -1,6 +1,5 @@
-// {
-//     esversion: 6
-// }
+/*jshint esversion: 6 */ 
+
 
 // create function question constructor
 function Question(question, choices, answer) {
@@ -10,15 +9,17 @@ function Question(question, choices, answer) {
 }
 
 var questionArray = [];
+init();
 
-// IIFE to create questions objects
-(function() {
+// create questions objects
+function init() {
   // Question 1
   var question1 = new Question(
     "What type of animal is a seahorse?",
     { a: "Crustacean", b: "Arachnid", c: "Fish" },
     "a"
   );
+  questionArray.push(question1);
 
   // Question 2
   var question2 = new Question(
@@ -26,36 +27,42 @@ var questionArray = [];
     { a: "Chihuahua", b: "Poodle", c: "Pomeranian" },
     "a"
   );
+  questionArray.push(question2);
+
   // Question 3
 
   var question3 = new Question(
     "What color are zebras?",
-    { a: "White with black stripes", b: "lack with white stripes", c: "None of the above" },
+    {
+      a: "White with black stripes",
+      b: "lack with white stripes",
+      c: "None of the above"
+    },
     "a"
   );
-  // Question 4
+  questionArray.push(question3);
 
+  // Question 4
   var question4 = new Question(
     "What existing bird has the largest wingspan?",
     { a: "Condor", b: "Swan", c: "Albatross" },
     "a"
   );
-
-  questionArray.push(question1);
-  questionArray.push(question2);
-  questionArray.push(question3);
   questionArray.push(question4);
+}
 
-  // new Question(questionArray.push('Can a tiger be your pet?'));
-  // new Question(questionArray.push('Can you ride a camel?'));
-  // new Question(questionArray.push('Are fruits and vegetables healthy to eat?'));
-})();
+// generates random question when quiz starts
+function randomQuestion(){
+  // pick a random question
+    var currentQuestion = questionArray[Math.floor((Math.random() * questionArray.length))];
+  // log question to console
+    console.log(currentQuestion.question);
+  // log the answers to be picked
+    for (var choice in currentQuestion.choices){
+      console.log(`${choice}: ${currentQuestion.choices[choice]}`);
+    }
+}
 
-console.log(questionArray[1].choices);
+// console.log(questionArray);
 
-// questionArray.forEach(function(element){
-
-//     // for (property in element){
-//     //     console.log(element[property]);
-//     // }
-// });
+randomQuestion();
